@@ -195,12 +195,23 @@ Deploying on PythonAnywhere's free tier is a great way to keep your bot running 
 **Step 5: Set Environment Variables (Crucial for Secrets!)**
 
 1.  Go back to the **Web** tab.
-2.  Scroll down to the **"Virtualenv"** section and enter the name of the virtual environment you created: `my-bot-venv`.
-3.  Scroll down to the **"Code"** section again. In the **"Environment variables"** subsection, add your secrets:
-    *   `TELEGRAM_BOT_TOKEN` = `your_telegram_bot_token`
-    *   `GEMINI_API_KEY` = `your_google_api_key`
-    *   `WEBHOOK_URL` = `https://your-username.pythonanywhere.com/webhook`
-4.  **Important:** The `WEBHOOK_URL` must be the full URL of your web app, ending in `/webhook`.
+2.  Scroll down to the **"Virtualenv"** section and ensure your virtual environment name (`my-bot-venv`) is entered.
+3.  **Option A: Using the Environment Variables section (Preferred if available)**
+    *   Scroll down to the **"Code"** section again. Look for the **"Environment variables"** subsection.
+    *   Add your secrets there:
+        *   `TELEGRAM_BOT_TOKEN` = `your_telegram_bot_token`
+        *   `GEMINI_API_KEY` = `your_google_api_key`
+        *   `WEBHOOK_URL` = `https://your-username.pythonanywhere.com/webhook`
+4.  **Option B: Adding to WSGI file (If Environment Variables section is missing)**
+    *   If you don't see the "Environment variables" section, you can add them directly to your WSGI configuration file.
+    *   Go back to the **WSGI configuration file** (from Step 4).
+    *   Add the following lines *after* the `os.environ['FLASK_APP'] = 'app.py'` line, replacing the placeholder values:
+        ```python
+        os.environ['TELEGRAM_BOT_TOKEN'] = 'your_telegram_bot_token'
+        os.environ['GEMINI_API_KEY'] = 'your_google_api_key'
+        os.environ['WEBHOOK_URL'] = 'https://your-username.pythonanywhere.com/webhook'
+        ```
+5.  **Important:** The `WEBHOOK_URL` must be the full URL of your web app, ending in `/webhook`.
 
 **Step 6: Set the Telegram Webhook**
 
