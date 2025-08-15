@@ -137,12 +137,21 @@ Deploying on PythonAnywhere's free tier is a great way to keep your bot running 
 
 **Step 2: Set Up the Virtual Environment**
 
-1.  Still in the Bash console, create a virtual environment for your bot. It's best to use the same Python version you developed with (e.g., Python 3.11).
+1.  Still in the Bash console, navigate into your project directory:
     ```bash
-    mkvirtualenv --python=/usr/bin/python3.11 my-bot-venv
+    cd ~/Journal-Agent
     ```
-2.  Your virtual environment (`my-bot-venv`) will be activated automatically.
-3.  Install all the required packages from your `requirements.txt` file:
+2.  Create a virtual environment *inside* this directory using the specific Python version you need. This is more reliable than the global `mkvirtualenv` command.
+    ```bash
+    python3.11 -m venv venv
+    ```
+3.  Activate the new virtual environment:
+    ```bash
+    source venv/bin/activate
+    ```
+    *(Your command prompt should now start with `(venv)`)*
+
+4.  Install all the required packages from your `requirements.txt` file:
     ```bash
     pip install -r requirements.txt
     ```
